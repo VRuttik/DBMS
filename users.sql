@@ -9,7 +9,8 @@ CREATE TABLE users (
   gender TEXT CHECK (gender IN ('M', 'F', 'O')),
   status BOOLEAN);
 
--- Insert sample data into the users tableINSERT INTO users (name, email, password, contact, address, dob, gender, status) 
+-- Insert sample data into the users table
+INSERT INTO users (name, email, password, contact, address, dob, gender, status) 
 VALUES('John Doe', 'john@example.com', 'hashed_password_1', '1234567890', '123 Main St, City, Country', '1990-01-15', 'M', 1),
   ('Jane Smith', 'jane@example.com', 'hashed_password_2', '9876543210', '456 Elm St, Town, Country', '1995-05-20', 'F', 1),
   ('Sam Johnson', 'sam@example.com', 'hashed_password_3', '5555555555', '789 Oak St, Village, Country', '1985-11-10', 'M', 0),
