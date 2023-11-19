@@ -1,0 +1,27 @@
+db.products.insertMany([
+    {name:"Laptop", category:"electronics", status:"active", quantity:100, createdAt: new Date()},
+    {name:"T-shirt", category:"clothing", status:"active", quantity:50, createdAt: new Date()},
+    {name:"Headphones", category:"electronics", status:"active", quantity:75, createdAt: new Date()},
+    {name:"Jeans", category:"clothing", status:"active", quantity:30, createdAt: new Date()},
+    {name:"Smartphones", category:"electronics", status:"active", quantity:90, createdAt: new Date()},
+]);
+
+db.products.find({status: "active"});
+
+db.products.findOne({name:"Laptop"});
+
+db.products.find({status:"active", category:"electronics"});
+
+db.products.find({$or:[{status:"active"}, {category:"clothing"}]});
+
+db.products.find({status:{$ne:"inactive"}});
+
+db.products.find({quantity:{$gt: 50}});
+
+db.products.find({$where:"this.quantity + 10 === 100"});
+
+db.products.find({status:"active"}).skip(1).limit(3);
+
+db.products.find().sort({quantity: -1});
+
+db.runCommand({dbStats: 1});
