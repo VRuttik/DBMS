@@ -1,0 +1,43 @@
+db.users.insertMany([
+    {_id:1, name:"Alice", age:30},
+    {_id:2, name:"Bob", age:35},
+    {_id:3, name:"Charli", age:28},
+]);
+
+db.createCollection("orders",{
+    validator:{
+        $jsonSchema:{
+            bsonType:"object",
+            required:["product", "price"],
+            properties:{
+                product:{
+                    bsonType:"string",
+                    description: "must be a string and is required"
+                },
+                price:{
+                    bsonType:"decimal",
+                    description:"must be a decimal amd is required"
+                }
+            }
+        }
+    }
+});
+
+db.orders.insertOne({price:50.0});
+
+db.users.remove({name:"charlie"});
+db.users.remove({});
+db.users.update(
+    {_id: 1},
+    {$set: {name:"Alicia", age: 31}}
+);
+
+db.users.update({_id:2},{$inc:{age:1}});
+
+db.users.update(
+    {_id:4},
+    {$set: {name:"Eva", age:29}},
+    {upsert:true}
+);
+
+db.users.update({age:{$gt:30}},{$set:{status:"Senior"}},{multi:true});
